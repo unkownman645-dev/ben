@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Intake & Triage Prototype</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .gateway-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .gateway-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-blue);
+    }
+    .gateway-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    @media (max-width: 768px) {
+      .gateway-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">+</div>
+      <div class="brand-text">
+        <h1>Clinical Intake & Triage Prototype</h1>
+        <span>AI-Guided History Taking & Physician Handoff</span>
+      </div>
+    </div>
+  </nav>
+
+  <main style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+      <h2 style="font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+        Intelligent Clinical Intake & Triage
+      </h2>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6;">
+        A working prototype demonstrating patient symptom intake with up to 8 targeted follow-up questions, automated emergency detection, and instant structured handoff to the doctor's triage dashboard.
+      </p>
+    </div>
+
+    <div class="gateway-grid">
+      <!-- Patient Portal Gateway -->
+      <a href="/patient" class="gateway-card">
+        <div style="font-size: 32px; margin-bottom: 16px;">&#128221;</div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">1. Patient Check-In</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; flex: 1;">
+          Journal-style intake where past answers fold into a quiet running record above. Up to 8 targeted follow-ups focusing on OLD CARTS. Immediate escalation if red flags are described.
+        </p>
+        <div style="margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--primary-blue);">
+          Open Patient Portal &rarr;
+        </div>
+      </a>
+
+      <!-- Doctor Dashboard Gateway -->
+      <a href="/doctor" class="gateway-card">
+        <div style="font-size: 32px; margin-bottom: 16px;">&#127973;</div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">2. Doctor Worklist</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; flex: 1;">
+          Clinical triage dashboard sorted Emergency &rarr; Prompt &rarr; Routine. Click any case to view structured HPI, OLD CARTS breakdown, pertinent negatives, and the full transcript.
+        </p>
+        <div style="margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--primary-blue);">
+          Open Doctor Worklist &rarr;
+        </div>
+      </a>
+    </div>
+
+    <!-- Safety & Compliance Notice -->
+    <div style="margin-top: 48px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; font-size: 12px; color: var(--text-light); line-height: 1.6;">
+      <strong style="color: var(--text-main);">Clinical Safety & Compliance Note:</strong>
+      This is a functional prototype. Before clinical deployment with real patient health information (PHI), production implementations require HIPAA-compliant encrypted storage at rest and in transit, Business Associate Agreements (BAAs) with API providers, a dedicated human-in-the-loop pager escalation system for high-acuity triggers, and clinical oversight/sign-off on question protocols.
+    </div>
+  </main>
+</body>
+</html>

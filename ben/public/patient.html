@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Intake — Clinical Assistant</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header / Nav -->
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">+</div>
+      <div class="brand-text">
+        <h1>Clinical Intake Portal</h1>
+        <span>Confidential Medical History Taking</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="/patient" class="nav-btn nav-btn-active">Patient View</a>
+      <a href="/doctor" class="nav-btn nav-btn-outline">Doctor Dashboard &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="prototype-notice">
+    <span><strong>Prototype Intake System</strong>: Answers fold journal-style into a quiet record above. Up to 8 targeted follow-ups.</span>
+    <span>Auto-routes to Physician Worklist</span>
+  </div>
+
+  <main class="patient-container">
+    <!-- Optional Patient Identity Bar -->
+    <div class="patient-meta-bar" id="patientMetaBar">
+      <span>Patient Name:</span>
+      <input type="text" id="patientNameInput" value="Jordan Miller" placeholder="Enter patient name">
+      <span>Age:</span>
+      <input type="number" id="patientAgeInput" value="42" style="width: 60px;">
+      <button class="chip" id="startSessionBtn" style="margin-left: auto;">New Session</button>
+    </div>
+
+    <!-- 1. Quiet Running Record (Past Q&A Journal) -->
+    <section class="past-record-container" id="pastRecordContainer" style="display: none;">
+      <div class="past-record-header" id="togglePastRecord">
+        <span><span id="recordCount">0</span> Prior Question(s) Recorded</span>
+        <span id="recordToggleIcon">&#9662; Hide History</span>
+      </div>
+      <div class="past-record-list" id="pastRecordList">
+        <!-- Folded Q&A items populate dynamically -->
+      </div>
+    </section>
+
+    <!-- 2. Active Question Card (In Focus) -->
+    <section class="question-card" id="questionCard">
+      <div class="question-progress">
+        <span class="progress-tag" id="progressLabel">Intake Question 1 of 8</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 12%;"></div>
+        </div>
+      </div>
+
+      <div class="active-question-text" id="activeQuestionText">
+        Connecting to clinical intake assistant...
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="quick-chips" id="quickChips">
+        <span class="chip" onclick="applyChip('Started 2 hours ago')">Started 2 hours ago</span>
+        <span class="chip" onclick="applyChip('Sharp, throbbing pain (6/10)')">Sharp, throbbing (6/10)</span>
+        <span class="chip" onclick="applyChip('Mild discomfort, comes and goes')">Mild, comes & goes</span>
+        <span class="chip" onclick="applyChip('No known drug allergies')">No allergies</span>
+      </div>
+
+      <form class="answer-form" id="answerForm">
+        <textarea 
+          id="patientAnswerInput" 
+          placeholder="Type your response here... (Press Enter to submit, Shift+Enter for new line)"
+          rows="3" 
+          required
+        ></textarea>
+
+        <div class="form-actions">
+          <span class="input-hint">Detailed descriptions help your doctor prepare.</span>
+          <button type="submit" class="btn-primary" id="submitBtn">
+            <span>Send Response</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. Emergency Escalation Screen (Hidden by Default) -->
+    <section class="emergency-screen" id="emergencyScreen" style="display: none;">
+      <div class="emergency-icon">&#9888;</div>
+      <h2 class="emergency-title">Emergency Medical Alert</h2>
+      <p class="emergency-body" id="emergencyReasonText">
+        The symptoms you reported require immediate clinical escalation. Our automated questionnaire has been halted to prioritize your safety.
+      </p>
+      <div class="emergency-actions">
+        <a href="tel:911" class="btn-emergency">&#128222; Call 911 / Emergency Services</a>
+        <button class="nav-btn nav-btn-outline" style="padding: 12px;" onclick="window.location.href='/doctor'">
+          Open Doctor Triage Worklist (Case Flagged Red)
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. Intake Completed Screen (Hidden by Default) -->
+    <section class="complete-screen" id="completeScreen" style="display: none;">
+      <div class="complete-icon">&#10003;</div>
+      <h2 class="complete-title">Intake Complete & Handoff Successful</h2>
+      <p class="complete-desc" id="completeMessage">
+        Thank you. Your responses have been summarized and automatically placed onto the doctor's triage dashboard for clinical review.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 12px;">
+        <a href="/doctor" class="btn-primary" style="text-decoration: none;">
+          View in Doctor Dashboard &rarr;
+        </a>
+        <button class="nav-btn nav-btn-outline" onclick="location.reload()">
+          Start New Intake
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/patient.js"></script>
+</body>
+</html>

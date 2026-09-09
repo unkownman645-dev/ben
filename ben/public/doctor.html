@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physician Triage Worklist — Clinical Assistant</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header / Nav -->
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">+</div>
+      <div class="brand-text">
+        <h1>Doctor Triage Worklist</h1>
+        <span>Automated Intake Summaries & Acuity Routing</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="/patient" class="nav-btn nav-btn-outline">&larr; Patient Check-In</a>
+      <a href="/doctor" class="nav-btn nav-btn-active">Doctor Worklist</a>
+    </div>
+  </nav>
+
+  <div class="prototype-notice">
+    <span><strong>Physician Dashboard</strong>: Worklist auto-sorted by acuity: <strong>Emergency &rarr; Prompt &rarr; Routine</strong>. Click any row to review summary & transcript.</span>
+    <span id="lastUpdatedNotice">Auto-refresh: Active (every 5s)</span>
+  </div>
+
+  <main class="doctor-container">
+    <!-- Header Stats -->
+    <header class="dashboard-header">
+      <div>
+        <h2 style="font-size: 20px; font-weight: 700; color: var(--text-main);">Clinical Queue</h2>
+        <p style="font-size: 13px; color: var(--text-light);">Triage prioritization based on patient-reported symptoms</p>
+      </div>
+
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <span class="stat-val emergency" id="emergencyCount">0</span>
+          <span class="stat-label">Emergency</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val prompt" id="promptCount">0</span>
+          <span class="stat-label">Prompt Review</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val routine" id="routineCount">0</span>
+          <span class="stat-label">Routine</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Worklist Table Card -->
+    <div class="worklist-card">
+      <div class="worklist-toolbar">
+        <div class="filter-pills">
+          <button class="pill-btn active" data-filter="all">All Patients (<span id="totalFilterCount">0</span>)</button>
+          <button class="pill-btn" data-filter="emergency">Emergency</button>
+          <button class="pill-btn" data-filter="prompt">Prompt</button>
+          <button class="pill-btn" data-filter="routine">Routine</button>
+        </div>
+
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="nav-btn nav-btn-outline" id="refreshBtn" title="Refresh worklist">
+            &#x21bb; Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="worklist-table">
+          <thead>
+            <tr>
+              <th style="width: 140px;">Acuity</th>
+              <th style="width: 180px;">Patient</th>
+              <th>Chief Complaint & Key Red Flags</th>
+              <th style="width: 120px;">Questions</th>
+              <th style="width: 130px;">Submitted</th>
+              <th style="width: 100px;">Status</th>
+              <th style="width: 100px; text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="casesTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-light); padding: 24px;">
+                Loading triage queue...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Detailed Medical Case Drawer / Modal -->
+  <div class="modal-overlay" id="caseDrawerModal">
+    <div class="modal-drawer">
+      <div class="drawer-header">
+        <div>
+          <h3 style="font-size: 16px; font-weight: 700;" id="drawerPatientName">Patient Name</h3>
+          <span style="font-size: 12px; color: var(--text-light);" id="drawerSubmittedTime">Intake Time</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div id="drawerAcuityBadge"></div>
+          <button class="nav-btn nav-btn-outline" id="closeDrawerBtn" style="padding: 4px 8px; font-size: 16px;">&times;</button>
+        </div>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Acuity Rationale Alert -->
+        <div class="summary-block" id="drawerAcuityAlert" style="display: none;">
+          <div class="summary-title" style="color: var(--emergency-red);">
+            &#9888; Triage Acuity Assessment
+          </div>
+          <div style="font-size: 13px; font-weight: 500;" id="drawerTriageRationale">
+            Emergency rationale goes here.
+          </div>
+        </div>
+
+        <!-- Structured Summary: Chief Complaint -->
+        <div class="summary-block">
+          <div class="summary-title">Chief Complaint</div>
+          <div style="font-size: 15px; font-weight: 600; color: var(--text-main);" id="drawerChiefComplaint">
+            Complaint narrative
+          </div>
+        </div>
+
+        <!-- Structured Summary: HPI (OLD CARTS) -->
+        <div class="summary-block">
+          <div class="summary-title">History of Present Illness (OLD CARTS)</div>
+          <div class="hpi-grid" id="drawerHpiGrid">
+            <!-- HPI properties injected here -->
+          </div>
+        </div>
+
+        <!-- Associated Symptoms & Pertinent Negatives -->
+        <div class="summary-block">
+          <div class="summary-title">Review of Symptoms & Findings</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;">
+            <div>
+              <strong style="color: #047857;">Reported Symptoms:</strong>
+              <ul style="padding-left: 18px; margin-top: 4px;" id="drawerAssocSymptoms"></ul>
+            </div>
+            <div>
+              <strong style="color: var(--text-light);">Pertinent Negatives:</strong>
+              <ul style="padding-left: 18px; margin-top: 4px;" id="drawerNegatives"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medications & Allergies -->
+        <div class="summary-block">
+          <div class="summary-title">Patient-Reported Background</div>
+          <div style="font-size: 13px;">
+            <div><strong>Medications:</strong> <span id="drawerMeds">None reported</span></div>
+            <div style="margin-top: 4px;"><strong>Allergies:</strong> <span id="drawerAllergies">None reported</span></div>
+          </div>
+        </div>
+
+        <!-- Full Transcript -->
+        <div class="summary-block">
+          <div class="summary-title" style="justify-content: space-between; cursor: pointer;" id="toggleTranscriptHeader">
+            <span>Verbatim Intake Transcript (<span id="transcriptMsgCount">0</span> turns)</span>
+            <span id="toggleTranscriptIcon">&#9662; Show</span>
+          </div>
+          <div class="transcript-box" id="drawerTranscriptBox" style="display: none; margin-top: 10px;">
+            <!-- Message bubbles go here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <button class="nav-btn nav-btn-outline" id="copyNoteBtn">&#128203; Copy EHR Note</button>
+        <button class="btn-primary" id="markReviewedBtn">&#10003; Mark as Reviewed</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/doctor.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ Calculates how likely a student is to survive the semester based on ridiculous c
 """
 
 import sys
+import os
 
 # Ensure UTF-8 output on Windows consoles
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -724,12 +725,14 @@ def random_advice():
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    debug_mode = os.environ.get("FLASK_ENV") == "development"
     try:
         print("\n=======================================================")
         print("  [+] COLLEGE SURVIVAL SCORE CALCULATOR (TM)")
-        print("  Status: Server running locally")
-        print("  Open your browser at: http://127.0.0.1:5000")
+        print(f"  Status: Server running on port {port}")
+        print(f"  Local link: http://127.0.0.1:{port}")
         print("=======================================================\n")
     except Exception:
         pass
-    app.run(debug=True, host="127.0.0.1", port=5000)
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)

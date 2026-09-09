@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Survival Score Calculator™</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background glowing ambient lights -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <div class="app-container">
+        <!-- HEADER SECTION -->
+        <header class="app-header">
+            <div class="brand-badge">
+                <span class="pulse-dot"></span>
+                <span>ACADEMIC CRISIS MANAGEMENT DEPT.</span>
+            </div>
+            <h1 class="main-title">
+                🎓 COLLEGE SURVIVAL SCORE CALCULATOR<span class="tm">™</span>
+            </h1>
+            <p class="subtitle">
+                “Because surviving college deserves a scientific calculation.”
+            </p>
+            <div class="disclaimer-banner">
+                <span class="disclaimer-icon">⚠️</span>
+                <span><strong>Disclaimer:</strong> This calculator has absolutely no scientific basis and may cause unnecessary self-realization.</span>
+            </div>
+
+            <!-- Top Action Bar -->
+            <div class="top-actions">
+                <button type="button" id="btn-random-student" class="btn btn-secondary">
+                    <span class="btn-icon">🎲</span> Generate Random Student
+                </button>
+                <button type="button" id="btn-reset-top" class="btn btn-outline">
+                    <span class="btn-icon">🔄</span> Reset Fields
+                </button>
+                <button type="button" id="btn-sound-toggle" class="btn btn-outline" title="Toggle audio sound effects">
+                    <span class="btn-icon" id="sound-icon">🔊</span> Sound FX: ON
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN FORM -->
+        <main>
+            <!-- Error Banner Container -->
+            <div id="error-banner" class="error-banner hidden" role="alert">
+                <span class="error-icon">🚨</span>
+                <span id="error-message">Please correct the highlighted inputs below.</span>
+                <button type="button" class="close-error" onclick="document.getElementById('error-banner').classList.add('hidden')">&times;</button>
+            </div>
+
+            <form id="survival-form" novalidate>
+                <div class="form-grid">
+                    
+                    <!-- SECTION 1: ACADEMICS -->
+                    <div class="form-section-card">
+                        <div class="section-header">
+                            <span class="section-icon">📚</span>
+                            <div>
+                                <h3>Academic Standing</h3>
+                                <p class="section-hint">The grades and attendance your parents ask about</p>
+                            </div>
+                        </div>
+
+                        <!-- 1. Attendance -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="attendance">
+                                    <span class="param-icon">📅</span> Attendance Percentage
+                                </label>
+                                <span class="input-badge" id="attendance-badge">75% (Safe)</span>
+                            </div>
+                            <div class="input-with-affix">
+                                <input type="number" id="attendance" name="attendance" min="0" max="100" step="0.5" value="75" required>
+                                <span class="affix">%</span>
+                            </div>
+                            <small class="helper-text">90–100% Teacher's favourite | &lt;50% Are you even enrolled?</small>
+                        </div>
+
+                        <!-- 2. CGPA -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="cgpa">
+                                    <span class="param-icon">🎓</span> Current CGPA
+                                </label>
+                                <span class="input-badge" id="cgpa-badge">7.50</span>
+                            </div>
+                            <div class="input-with-affix">
+                                <input type="number" id="cgpa" name="cgpa" min="0" max="10" step="0.01" value="7.5" required>
+                                <span class="affix">/10</span>
+                            </div>
+                            <small class="helper-text">9.0–10 Sharma ji ka beta | &lt;6.0 Degree speedrun (failed)</small>
+                        </div>
+
+                        <!-- 3. Pending Assignments -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="assignments">
+                                    <span class="param-icon">📝</span> Pending Assignments
+                                </label>
+                                <span class="input-badge" id="assignments-badge">2 pending</span>
+                            </div>
+                            <input type="number" id="assignments" name="assignments" min="0" max="100" step="1" value="2" required>
+                            <small class="helper-text">0: Academic weapon | 9+: Full-time profession</small>
+                        </div>
+
+                        <!-- 4. Back Papers -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="back_papers">
+                                    <span class="param-icon">📜</span> Number of Back Papers
+                                </label>
+                                <span class="input-badge" id="backpapers-badge">0 backs</span>
+                            </div>
+                            <input type="number" id="back_papers" name="back_papers" min="0" max="50" step="1" value="0" required>
+                            <small class="helper-text">0: Legend | 1–2: Still alive | 6+: Final Boss</small>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: SURVIVAL & FINANCES -->
+                    <div class="form-section-card">
+                        <div class="section-header">
+                            <span class="section-icon">⏳</span>
+                            <div>
+                                <h3>Time & Financial Survival</h3>
+                                <p class="section-hint">How long until freedom & how broke you are</p>
+                            </div>
+                        </div>
+
+                        <!-- 5. Days Until Semester Ends -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="days_left">
+                                    <span class="param-icon">⏳</span> Days Until Semester Ends
+                                </label>
+                                <span class="input-badge" id="days-badge">25 days</span>
+                            </div>
+                            <div class="input-with-affix">
+                                <input type="number" id="days_left" name="days_left" min="1" max="365" step="1" value="25" required>
+                                <span class="affix">days</span>
+                            </div>
+                            <small class="helper-text">Closer to end = Higher survival odds</small>
+                        </div>
+
+                        <!-- 6. Money Left -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="money">
+                                    <span class="param-icon">💰</span> Money Left in Account
+                                </label>
+                                <span class="input-badge" id="money-badge">₹2,500</span>
+                            </div>
+                            <div class="input-with-affix">
+                                <span class="affix-prefix">₹</span>
+                                <input type="number" id="money" name="money" min="0" step="50" value="2500" required>
+                            </div>
+                            <small class="helper-text">₹10,000+: Financially stable | &lt;₹500: Boss fight</small>
+                        </div>
+
+                        <!-- 7. Sleep Hours -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="sleep_hours">
+                                    <span class="param-icon">😴</span> Avg Sleep Hours / Day
+                                </label>
+                                <span class="input-badge" id="sleep-badge">6.0 hrs</span>
+                            </div>
+                            <div class="input-with-affix">
+                                <input type="number" id="sleep_hours" name="sleep_hours" min="0" max="24" step="0.5" value="6" required>
+                                <span class="affix">hrs</span>
+                            </div>
+                            <small class="helper-text">7–9: Healthy | 3–5: Caffeine | &lt;3: Windows 95</small>
+                        </div>
+
+                        <!-- 8. Cooking Ability -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="cooking">
+                                    <span class="param-icon">🍳</span> Cooking Ability
+                                </label>
+                            </div>
+                            <select id="cooking" name="cooking" class="styled-select">
+                                <option value="Cannot cook">Cannot cook (Zomato shareholder)</option>
+                                <option value="Can boil water">Can boil water</option>
+                                <option value="Maggi/eggs" selected>Maggi/eggs (Standard college diet)</option>
+                                <option value="Basic meals">Basic meals (Edible food)</option>
+                                <option value="Good cook">Good cook (Wing chef)</option>
+                                <option value="Hostel chef">Hostel chef (Gordon Ramsay)</option>
+                            </select>
+                            <small class="helper-text">Increases survival odds against cafeteria food poisoning</small>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: SKILLS & MOCKING -->
+                    <div class="form-section-card full-width-mobile">
+                        <div class="section-header">
+                            <span class="section-icon">🧠</span>
+                            <div>
+                                <h3>Soft, Hard & Street Skills</h3>
+                                <p class="section-hint">Technical wizardry, socialization, and roasts</p>
+                            </div>
+                        </div>
+
+                        <div class="skills-subgrid">
+                            <!-- 9. Technical Skill -->
+                            <div class="input-group">
+                                <div class="label-row">
+                                    <label for="tech_level">
+                                        <span class="param-icon">💻</span> Technical Skill Level
+                                    </label>
+                                </div>
+                                <select id="tech_level" name="tech_level" class="styled-select">
+                                    <option value="Beginner">Beginner (Python is a snake)</option>
+                                    <option value="Basic">Basic (Knows power button)</option>
+                                    <option value="Intermediate" selected>Intermediate (HTML is my passion)</option>
+                                    <option value="Good">Good (For-loop without tears)</option>
+                                    <option value="Advanced">Advanced (StackOverflow grandmaster)</option>
+                                    <option value="Expert">Expert (Hackathon menace)</option>
+                                </select>
+                                <small class="helper-text">Can you automate your homework?</small>
+                            </div>
+
+                            <!-- 10. Social Skill -->
+                            <div class="input-group">
+                                <div class="label-row">
+                                    <label for="social_level">
+                                        <span class="param-icon">🗣️</span> Social Skill Level
+                                    </label>
+                                </div>
+                                <select id="social_level" name="social_level" class="styled-select">
+                                    <option value="NPC">NPC (Only speaks when prompted)</option>
+                                    <option value="Introvert mode">Introvert mode (Library dweller)</option>
+                                    <option value="Normal" selected>Normal (Functional human)</option>
+                                    <option value="Social">Social (Cafeteria regular)</option>
+                                    <option value="Very social">Very social (Wing extrovert)</option>
+                                    <option value="Campus celebrity">Campus celebrity (Knows security guards)</option>
+                                </select>
+                                <small class="helper-text">Can you borrow notes or beg for proxies?</small>
+                            </div>
+
+                            <!-- 11. Funny / Mocking Ability -->
+                            <div class="input-group">
+                                <div class="label-row">
+                                    <label for="mocking">
+                                        <span class="param-icon">🎭</span> Funny Audio / Mocking Ability
+                                    </label>
+                                </div>
+                                <select id="mocking" name="mocking" class="styled-select">
+                                    <option value="Not funny">Not funny (Laughs 3 business days later)</option>
+                                    <option value="Occasionally funny">Occasionally funny</option>
+                                    <option value="Meme supplier" selected>Meme supplier (Distributes memes)</option>
+                                    <option value="Class comedian">Class comedian (Professors laugh)</option>
+                                    <option value="Professional roaster">Professional roaster (No survivors)</option>
+                                    <option value="Final boss of mocking">Final boss of mocking (Emotional damage)</option>
+                                </select>
+                                <small class="helper-text">Coping mechanism against academic trauma</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="submit-container">
+                    <button type="submit" id="btn-calculate" class="btn btn-primary btn-giant">
+                        <span class="pulse-ring"></span>
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">CALCULATE MY SURVIVAL SCORE</span>
+                        <span class="btn-icon">⚡</span>
+                    </button>
+                    <p class="submit-subtext">Clicking may reveal things you cannot unsee.</p>
+                </div>
+            </form>
+
+            <!-- ========================================================= -->
+            <!-- RESULTS SECTION -->
+            <!-- ========================================================= -->
+            <section id="results-section" class="results-section hidden" aria-live="polite">
+                
+                <!-- Main Score Card -->
+                <div class="result-hero-card" id="result-hero-card">
+                    <div class="result-glow-bg"></div>
+                    
+                    <span class="result-eyebrow">FINAL SEMESTER PROGNOSIS</span>
+                    <h2 class="result-title">COLLEGE SURVIVAL SCORE</h2>
+                    
+                    <!-- Animated Gauge / Score Display -->
+                    <div class="score-display-wrapper">
+                        <div class="score-radial-progress" id="score-radial">
+                            <div class="score-inner-content">
+                                <span class="score-number" id="score-number">0</span>
+                                <span class="score-total">/ 100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Survival Tier Badge & Quote -->
+                    <div class="tier-container">
+                        <div class="tier-badge" id="tier-badge">
+                            <span id="tier-text">🟡 BARELY SURVIVING</span>
+                        </div>
+                        <p class="tier-quote" id="tier-quote">
+                            “One more assignment could end everything.”
+                        </p>
+                    </div>
+
+                    <!-- Survival Insights: Strongest Skill vs Biggest Threat -->
+                    <div class="insights-grid">
+                        <div class="insight-card strongest">
+                            <div class="insight-label">⭐ Strongest Survival Skill</div>
+                            <div class="insight-val" id="insight-strongest-name">💻 Technical Skills</div>
+                            <div class="insight-desc" id="insight-strongest-desc">Stack Overflow copy-paste grandmaster</div>
+                            <div class="insight-score" id="insight-strongest-score">5/5 pts</div>
+                        </div>
+
+                        <div class="insight-card threat">
+                            <div class="insight-label">⚠️ Biggest Threat to Survival</div>
+                            <div class="insight-val" id="insight-threat-name">📝 Pending Assignments</div>
+                            <div class="insight-desc" id="insight-threat-desc">The assignments have become your assignments</div>
+                            <div class="insight-score" id="insight-threat-score">0/10 pts</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Share & Reset Action Buttons -->
+                    <div class="result-actions">
+                        <button type="button" id="btn-share" class="btn btn-secondary">
+                            <span class="btn-icon">📸</span> Share My Survival Score
+                        </button>
+                        <button type="button" id="btn-recalculate" class="btn btn-outline">
+                            <span class="btn-icon">🔄</span> Start Over
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DETAILED BREAKDOWN SECTION -->
+                <div class="breakdown-container">
+                    <div class="breakdown-header">
+                        <span class="section-icon">📊</span>
+                        <div>
+                            <h3>Survival Metric Breakdown</h3>
+                            <p class="section-hint">How each ridiculous parameter contributed to your final score</p>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-grid" id="breakdown-grid">
+                        <!-- Populated dynamically by script.js -->
+                    </div>
+                </div>
+
+                <!-- RANDOM COLLEGE ADVICE CARD -->
+                <div class="advice-card">
+                    <div class="advice-header">
+                        <span class="advice-icon">💡</span>
+                        <span class="advice-title">Useless College Advice of the Day</span>
+                    </div>
+                    <blockquote class="advice-content" id="advice-content">
+                        “Attend at least one class this week. Just one.”
+                    </blockquote>
+                    <button type="button" id="btn-new-advice" class="btn btn-sm btn-outline">
+                        <span>🔄 Give Me Another Advice</span>
+                    </button>
+                </div>
+
+                <!-- ===================================================== -->
+                <!-- ROAST GENERATOR & MOCKING MODE SECTION -->
+                <!-- ===================================================== -->
+                <div class="roast-section" id="roasting-hub">
+                    <div class="roast-header">
+                        <div class="roast-title-group">
+                            <span class="roast-badge">🔥 SAVAGE MODE</span>
+                            <h3>Customized Roast Engine</h3>
+                            <p class="section-hint">Personalized psychological warfare based on your academic deficiencies</p>
+                        </div>
+                        <button type="button" id="btn-roast-me" class="btn btn-danger btn-pulse">
+                            <span class="btn-icon">🔥</span> ROAST ME
+                        </button>
+                    </div>
+
+                    <!-- Main Roast Box -->
+                    <div class="roast-display-box" id="roast-display-box">
+                        <div class="roast-status-bar">
+                            <span class="roast-category-tag" id="roast-category-tag">General Diagnosis</span>
+                            <div class="audio-status" id="audio-status">
+                                <span class="speaker-icon">🗣️</span>
+                                <span id="speech-state-text">Ready to speak</span>
+                            </div>
+                        </div>
+                        
+                        <p class="roast-text" id="roast-text">
+                            Click "ROAST ME" or any category button below to witness the brutal truth about your college trajectory.
+                        </p>
+
+                        <div class="roast-audio-controls">
+                            <button type="button" id="btn-speak-roast" class="btn btn-sm btn-secondary">
+                                <span class="btn-icon">🗣️</span> Read Roast Aloud
+                            </button>
+                            <button type="button" id="btn-stop-speech" class="btn btn-sm btn-outline">
+                                <span class="btn-icon">⏹️</span> Stop
+                            </button>
+                            
+                            <!-- Voice Rate/Pitch Settings dropdown / sliders -->
+                            <div class="voice-toggles">
+                                <label for="voice-pitch">Pitch:</label>
+                                <input type="range" id="voice-pitch" min="0.5" max="1.8" step="0.1" value="1.0">
+                                <label for="voice-rate">Speed:</label>
+                                <input type="range" id="voice-rate" min="0.7" max="1.4" step="0.1" value="1.05">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MOCKING MODE BUTTONS -->
+                    <div class="mocking-mode-container">
+                        <div class="mocking-title">
+                            <span class="mock-icon">🎤</span>
+                            <span>MOCKING MODE — TARGET SPECIFIC FAILURES:</span>
+                        </div>
+                        
+                        <div class="mocking-buttons-grid">
+                            <button type="button" class="btn btn-mock" data-topic="attendance">
+                                <span>📅</span> Roast My Attendance
+                            </button>
+                            <button type="button" class="btn btn-mock" data-topic="cgpa">
+                                <span>🎓</span> Roast My CGPA
+                            </button>
+                            <button type="button" class="btn btn-mock" data-topic="money">
+                                <span>💰</span> Roast My Bank Balance
+                            </button>
+                            <button type="button" class="btn btn-mock" data-topic="assignments">
+                                <span>📝</span> Roast My Assignments
+                            </button>
+                            <button type="button" class="btn btn-mock" data-topic="sleep">
+                                <span>😴</span> Roast My Sleep
+                            </button>
+                            <button type="button" class="btn btn-mock" data-topic="back_papers">
+                                <span>📜</span> Roast My Back Papers
+                            </button>
+                            <button type="button" class="btn btn-mock btn-mock-all" data-topic="everything">
+                                <span>💥</span> Roast Everything
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="app-footer">
+            <p>Built with Python (Flask), HTML5, CSS3 & JavaScript for tired college warriors everywhere.</p>
+            <p class="footer-subtext">No students or GPAs were permanently harmed in the making of this calculator.</p>
+            <div class="footer-links">
+                <span>Keyboard shortcuts: <kbd>Enter</kbd> to Calculate | <kbd>R</kbd> to Roast</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="toast hidden">
+        <span id="toast-icon">📋</span>
+        <span id="toast-message">Survival report copied to clipboard!</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script src="static/script.js"></script>
+</body>
+</html>

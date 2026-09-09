@@ -1,0 +1,7 @@
+ben/backend/node_modules/
+**/node_modules/
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/

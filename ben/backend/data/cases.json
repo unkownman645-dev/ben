@@ -1,0 +1,314 @@
+[
+  {
+    "id": "session_1788976619367_2c52a",
+    "patientName": "Emergency Test Patient",
+    "patientAge": 52,
+    "createdAt": "2026-09-09T17:56:59.367415+00:00",
+    "status": "reviewed",
+    "acuity": "emergency",
+    "chiefComplaint": "I have sudden crushing chest pain radiating to my left arm and jaw and I cannot breathe",
+    "isEmergency": true,
+    "emergencyReason": "Potential high-acuity medical emergency detected: matched criteria 'chest\\s*(pain|pressure|tightness|heaviness|squeezing)'. Immediate clinical escalation required.",
+    "questionsAnswered": 1,
+    "structuredSummary": {
+      "chief_complaint": "I have sudden crushing chest pain radiating to my left arm and jaw and I cannot breathe",
+      "hpi": {
+        "onset": "Acute",
+        "location": "Cardiovascular / Respiratory / Neurological",
+        "duration": "Immediate",
+        "character": "High-risk red-flag symptoms",
+        "alleviating_factors": "None",
+        "aggravating_factors": "Active",
+        "timing": "Active emergency",
+        "severity": "Emergency acuity"
+      },
+      "associated_symptoms": [
+        "Red-flag indicators triggered immediate intake halt"
+      ],
+      "pertinent_negatives": [],
+      "patient_history": {
+        "medications": "Not collected",
+        "allergies": "Not collected"
+      }
+    },
+    "transcript": [
+      {
+        "role": "ai",
+        "content": "Hello. I'm your clinic's intake assistant. I'll ask you a few targeted questions so your physician has a clear, organized history before seeing you. To begin, what is the main symptom or health concern bringing you in today?",
+        "timestamp": "2026-09-09T17:56:59.367436+00:00"
+      },
+      {
+        "role": "patient",
+        "content": "I have sudden crushing chest pain radiating to my left arm and jaw and I cannot breathe",
+        "timestamp": "2026-09-09T17:56:59.452782+00:00"
+      },
+      {
+        "role": "ai",
+        "content": "CRITICAL: The symptoms you described require immediate emergency evaluation. Please call 911 or go to the nearest emergency room immediately.",
+        "timestamp": "2026-09-09T17:56:59.452813+00:00"
+      }
+    ],
+    "updatedAt": "2026-09-09T17:57:14.763699+00:00"
+  },
+  {
+    "id": "case-sample-001",
+    "patientName": "Elena Vance",
+    "patientAge": 54,
+    "createdAt": "2026-09-09T22:15:00.000Z",
+    "status": "pending",
+    "acuity": "emergency",
+    "chiefComplaint": "Substernal chest pressure radiating to left shoulder and jaw with shortness of breath",
+    "isEmergency": true,
+    "emergencyReason": "Potential Acute Coronary Syndrome (ACS) / Cardiac Emergency based on radiating chest pressure and acute dyspnea.",
+    "questionsAnswered": 2,
+    "structuredSummary": {
+      "chiefComplaint": "Crushing chest tightness and left arm discomfort",
+      "hpi": {
+        "onset": "Acute, approximately 45 minutes prior to intake",
+        "location": "Substernal chest, radiating to left shoulder and lower jaw",
+        "duration": "Constant, progressive",
+        "character": "Heavy, crushing pressure ('like an elephant sitting on my chest')",
+        "alleviatingFactors": "None reported",
+        "aggravatingFactors": "Deep breaths and mild exertion",
+        "timing": "Continuous since onset",
+        "severity": "8 out of 10"
+      },
+      "associatedSymptoms": [
+        "Dyspnea (shortness of breath)",
+        "Diaphoresis (cold sweats)",
+        "Mild nausea"
+      ],
+      "pertinentNegatives": [
+        "No prior history of diagnosed heart disease",
+        "No syncope or loss of consciousness"
+      ],
+      "patientReportedHistory": {
+        "medications": "Lisinopril 10mg daily",
+        "allergies": "Penicillin (rash)"
+      },
+      "triageLevel": "emergency",
+      "triageRationale": "Immediate emergency room evaluation required. Classic red-flag symptoms for cardiac ischemia / ACS."
+    },
+    "transcript": [
+      {
+        "role": "ai",
+        "content": "Hello. I am here to gather details about what you're experiencing today so your doctor can review your case. To start, what is the main symptom or health concern bringing you in today?",
+        "timestamp": "2026-09-09T22:15:10.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "I have really bad chest tightness and I'm having trouble catching my breath.",
+        "timestamp": "2026-09-09T22:15:45.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Could you tell me how long this chest tightness has been going on, and does the pain or pressure spread anywhere else, such as your neck, jaw, back, or arm?",
+        "timestamp": "2026-09-09T22:15:52.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "It started about 45 minutes ago. It's radiating down my left arm and up into my jaw. I'm breaking out in a cold sweat.",
+        "timestamp": "2026-09-09T22:16:30.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "CRITICAL: The symptoms you described (chest pressure radiating to your arm and jaw with shortness of breath and sweating) require immediate emergency medical attention. Please call 911 or proceed to the nearest emergency department immediately.",
+        "timestamp": "2026-09-09T22:16:32.000Z"
+      }
+    ]
+  },
+  {
+    "id": "case-sample-002",
+    "patientName": "Marcus Chen",
+    "patientAge": 38,
+    "createdAt": "2026-09-09T21:30:00.000Z",
+    "status": "pending",
+    "acuity": "prompt",
+    "chiefComplaint": "Acute right lower quadrant abdominal pain with low-grade fever and nausea",
+    "isEmergency": false,
+    "questionsAnswered": 6,
+    "structuredSummary": {
+      "chiefComplaint": "Severe abdominal pain localized to right lower quadrant",
+      "hpi": {
+        "onset": "Began 18 hours ago as periumbilical dull ache, migrated to RLQ 6 hours ago",
+        "location": "Right lower quadrant (McBurney's point region)",
+        "duration": "18 hours total, increasing intensity",
+        "character": "Sharp, constant, exacerbated by movement or coughing",
+        "alleviatingFactors": "Lying still with knees curled up provides slight relief",
+        "aggravatingFactors": "Walking, coughing, bumps on the road during car ride",
+        "timing": "Constant and worsening",
+        "severity": "7 out of 10"
+      },
+      "associatedSymptoms": [
+        "Nausea (no emesis)",
+        "Anorexia (loss of appetite since yesterday)",
+        "Subjective fever / chills (home thermometer read 100.4 F)"
+      ],
+      "pertinentNegatives": [
+        "No diarrhea or bloody stools",
+        "No dysuria or urinary symptoms",
+        "No prior abdominal surgeries"
+      ],
+      "patientReportedHistory": {
+        "medications": "None",
+        "allergies": "No known drug allergies (NKDA)"
+      },
+      "triageLevel": "prompt",
+      "triageRationale": "Migration of pain to RLQ with fever and anorexia strongly suggests acute appendicitis. Requires same-day physician evaluation and ultrasound/CT."
+    },
+    "transcript": [
+      {
+        "role": "ai",
+        "content": "Hello. I am here to gather details about what you're experiencing today so your doctor can review your case. To start, what is the main symptom or health concern bringing you in today?",
+        "timestamp": "2026-09-09T21:30:10.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "My stomach hurts really badly on the lower right side.",
+        "timestamp": "2026-09-09T21:30:40.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "When exactly did this pain begin, and has it moved or stayed in that same spot?",
+        "timestamp": "2026-09-09T21:30:50.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "It started yesterday around dinner near my belly button, but this morning it shifted to the lower right side and got much sharper.",
+        "timestamp": "2026-09-09T21:31:30.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "On a scale from 1 to 10, with 10 being the most severe pain imaginable, how would you rate it right now?",
+        "timestamp": "2026-09-09T21:31:40.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "About a 7. It hurts a lot whenever I take a step or cough.",
+        "timestamp": "2026-09-09T21:32:15.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Have you noticed any nausea, vomiting, fever, or changes in your appetite since this started?",
+        "timestamp": "2026-09-09T21:32:25.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "I feel nauseous and couldn't eat breakfast. My temperature was 100.4 F when I checked.",
+        "timestamp": "2026-09-09T21:33:05.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Does anything make the pain feel any better, and have you had any diarrhea or urinary symptoms?",
+        "timestamp": "2026-09-09T21:33:15.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "Curling my knees up helps a tiny bit. No diarrhea and no pain when peeing.",
+        "timestamp": "2026-09-09T21:33:55.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Are you currently taking any prescription medications, or do you have any drug allergies or relevant past medical conditions?",
+        "timestamp": "2026-09-09T21:34:05.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "No regular medications and no allergies. No prior surgeries.",
+        "timestamp": "2026-09-09T21:34:40.000Z"
+      }
+    ]
+  },
+  {
+    "id": "case-sample-003",
+    "patientName": "Sarah Jenkins",
+    "patientAge": 29,
+    "createdAt": "2026-09-09T20:45:00.000Z",
+    "status": "reviewed",
+    "acuity": "routine",
+    "chiefComplaint": "Throat irritation and mild nasal congestion for 3 days",
+    "isEmergency": false,
+    "questionsAnswered": 5,
+    "structuredSummary": {
+      "chiefComplaint": "Scratchy sore throat and mild runny nose",
+      "hpi": {
+        "onset": "Gradual onset over past 3 days",
+        "location": "Posterior oropharynx / throat, bilateral nasal passages",
+        "duration": "3 days",
+        "character": "Scratchy, dry irritation, mild discomfort on swallowing",
+        "alleviatingFactors": "Warm tea with honey provides temporary relief",
+        "aggravatingFactors": "Dry air and prolonged talking",
+        "timing": "Worst in the morning upon waking",
+        "severity": "3 out of 10"
+      },
+      "associatedSymptoms": [
+        "Clear nasal rhinorrhea (runny nose)",
+        "Mild fatigue",
+        "Occasional dry tickle cough"
+      ],
+      "pertinentNegatives": [
+        "No fever or chills (afebrile)",
+        "No difficulty swallowing liquids or breathing",
+        "No ear pain or facial sinus pressure"
+      ],
+      "patientReportedHistory": {
+        "medications": "Over-the-counter Cetirizine occasionally for seasonal allergies",
+        "allergies": "Seasonal pollen"
+      },
+      "triageLevel": "routine",
+      "triageRationale": "Symptoms consistent with mild upper respiratory viral prodrome or allergic rhinitis. No red flags or airway compromise. Routine outpatient management."
+    },
+    "transcript": [
+      {
+        "role": "ai",
+        "content": "Hello. I am here to gather details about what you're experiencing today so your doctor can review your case. To start, what is the main symptom or health concern bringing you in today?",
+        "timestamp": "2026-09-09T20:45:10.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "I've had a scratchy sore throat and runny nose for about 3 days.",
+        "timestamp": "2026-09-09T20:45:30.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "How would you describe the discomfort when swallowing, and have you checked your temperature for a fever?",
+        "timestamp": "2026-09-09T20:45:40.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "It's just a scratchy feeling, about 3/10. Swallowing is fine, and I haven't had any fever.",
+        "timestamp": "2026-09-09T20:46:10.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Have you noticed any cough, shortness of breath, ear pain, or swollen glands in your neck?",
+        "timestamp": "2026-09-09T20:46:20.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "Just a mild little tickle cough now and then. Breathing is totally normal, no ear pain.",
+        "timestamp": "2026-09-09T20:46:50.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Has anything helped ease the scratchiness, such as warm drinks or lozenges?",
+        "timestamp": "2026-09-09T20:47:00.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "Warm tea with honey helps a lot. It's mostly annoying in the morning when I wake up.",
+        "timestamp": "2026-09-09T20:47:30.000Z"
+      },
+      {
+        "role": "ai",
+        "content": "Do you take any regular medications or have any chronic medical conditions or allergies?",
+        "timestamp": "2026-09-09T20:47:40.000Z"
+      },
+      {
+        "role": "patient",
+        "content": "I take generic Zyrtec occasionally in spring for pollen allergies. Otherwise healthy.",
+        "timestamp": "2026-09-09T20:48:10.000Z"
+      }
+    ]
+  }
+]
